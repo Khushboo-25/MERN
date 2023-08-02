@@ -1,1 +1,1 @@
-# MERN
+# Employee Data Management System
