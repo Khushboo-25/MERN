@@ -11,6 +11,7 @@ const Read = () => {
     });
 
     const result1 = await response.json();
+    
     if (!response.ok) {
       setError(result1.error);
     }
@@ -22,11 +23,15 @@ const Read = () => {
         getData();
       }, 1000);
     }
+    
   }
 
   async function getData() {
     const response = await fetch("http://localhost:8000");
     const result = await response.json();
+    const sortedData = result.sort((a, b) => a.name.localeCompare(b.name));
+      
+    setData(sortedData);
     console.log("result..", result);
     if (!response.ok) {
       setError(result.error);
@@ -49,18 +54,34 @@ const Read = () => {
         {data?.map((ele) => (
           <div key={ele._id} className="col-3">
             <div class="card">
+            <h5 class="card-header">{ele.name}</h5>
               <div class="card-body">
-                <h5 class="card-title">{ele.name}</h5>
+                
                 <h6 class="card-subtitle mb-2 text-muted">{ele.email}</h6>
                 <p class="card-text">{ele.age}</p>
-                 <Link to={`/${ele._id}`} className="card-link">Edit</Link>
-                <Link class="card-link" onClick={() => handleDelete(ele._id)}>
-                  Delete
-                </Link>
+                <div className="card-body">
+                  
+                    <Link to={`/${ele._id}`} className="card-link btn btn-outline-secondary">
+                    Edit
+                    </Link>
+                    
+                    
+                    <Link class="card-link btn btn-outline-danger" onClick={() => handleDelete(ele._id)}>
+                    Delete
+                  </Link>
+                    
+
+                </div>
+                
+                
+                 
               </div>
             </div>
+            <br/>
           </div>
-        ))}
+          
+        )
+        )}
       </div>
     </div>
   );
