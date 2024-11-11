@@ -1,34 +1,45 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 const Navbar = () => {
+  // State to handle the toggler (whether navbar is open or closed)
+  const [isOpen, setIsOpen] = useState(false);
+
+  // Function to toggle navbar
+  const toggleNav = () => {
+    setIsOpen(!isOpen);
+  };
+
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
       <div className="container-fluid">
         <h3 className="navbar-brand" href="#">
-          MERN
+          Employee Record Organizer
         </h3>
+
+        {/* Toggler button that toggles navbar collapse */}
         <button
-          className="navbar-toggler"
+          className={`navbar-toggler ${isOpen ? "open" : ""}`}
           type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarNav"
+          onClick={toggleNav}
           aria-controls="navbarNav"
-          aria-expanded="false"
+          aria-expanded={isOpen ? "true" : "false"}
           aria-label="Toggle navigation"
         >
           <span className="navbar-toggler-icon"></span>
         </button>
-        <div className="collapse navbar-collapse" id="navbarNav">
+
+        {/* Navbar links */}
+        <div className={`collapse navbar-collapse ${isOpen ? "show" : ""}`} id="navbarNav">
           <ul className="navbar-nav">
             <li className="nav-item">
               <Link to="/" className="nav-link" aria-current="page">
-                Create Post
+                Add New
               </Link>
             </li>
             <li className="nav-item">
               <Link to="/read" className="nav-link active" aria-current="page">
-                All Post
+                Show All
               </Link>
             </li>
           </ul>

@@ -24,23 +24,30 @@ const Create = () => {
 
     const result = await response.json();
 
-    if (!response.ok) {
-      console.log(result.error);
-      setError(result.error);
-    }
+    
     if (response.ok) {
-      console.log(result);
-      setName("");
+      console.log("Added", response.ok);
+      setError("Added Successfully");
+      setTimeout(() => {
+        setError("");
+        setName("");
       setEmail("");
       setAge(0);
       setError("");
       navigate("/read");
+        // getData();
+      }, 1000);
+      
+    }
+    else {
+      console.log(result.error);
+      setError(result.error);
     }
   };
 
   return (
     <div class="container my-2">
-      <h1 class="h1 text-center">Fill the data</h1>
+      <h1 class="h1 text-center">ADD New Employee</h1>
 
       {error && <div class="alert alert-danger"> {error} </div>}
       <form className="form" onSubmit={handleSubmit}>

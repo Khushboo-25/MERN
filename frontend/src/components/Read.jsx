@@ -6,15 +6,19 @@ const Read = () => {
   const [error, setError] = useState();
 
   async function handleDelete(id) {
+    const isConfirmed = window.confirm("Are you sure you want to delete this data?");
+  
+    if (!isConfirmed) {
+      return;
+    }
+
     const response = await fetch(`http://localhost:8000/${id}`, {
       method: "DELETE",
     });
 
     const result1 = await response.json();
     
-    if (!response.ok) {
-      setError(result1.error);
-    }
+    
     if (response.ok) {
       console.log("deleted", response.ok);
       setError("Deleted Successfully");
@@ -22,6 +26,9 @@ const Read = () => {
         setError("");
         getData();
       }, 1000);
+    }
+    else {
+      setError(result1.error);
     }
     
   }
@@ -52,13 +59,13 @@ const Read = () => {
       {error && <div class="alert alert-danger"> {error} </div>}
       <div className="row">
         {data?.map((ele) => (
-          <div key={ele._id} className="col-3">
+          <div key={ele._id} className="col-4">
             <div class="card">
             <h5 class="card-header">{ele.name}</h5>
               <div class="card-body">
                 
-                <h6 class="card-subtitle mb-2 text-muted">{ele.email}</h6>
-                <p class="card-text">{ele.age}</p>
+                <h6 class="card-subtitle mb-2 text-muted">Email: {ele.email}  </h6>
+                <p class="card-text"> Age: {ele.age}</p>
                 <div className="card-body">
                   
                     <Link to={`/${ele._id}`} className="card-link btn btn-outline-secondary">
