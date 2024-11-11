@@ -3,7 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 
 
 const Update = () => {
-  const [fname, setName] = useState("");
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [age, setAge] = useState(0);
 
@@ -28,7 +28,13 @@ const Update = () => {
   //passing edited data to backend
   const handleUpdate = async (e) => {
     e.preventDefault();
-    const updatedUser = { fname, email, age };
+    const isConfirmed = window.confirm("Are you sure you want to update the data?");
+  
+    if (!isConfirmed) {
+      return; // If the user cancels, exit the function
+    }
+  
+    const updatedUser = { name, email, age };
     console.log(updatedUser);
     const response = await fetch(`http://localhost:8000/edit/${id}`, {
       method: "PATCH",
@@ -40,10 +46,15 @@ const Update = () => {
     const result = await response.json();
     if (response.ok) {
       console.log("updated result..", result);
-      setError("");
-      navigate("/read");
+      setError("Updated Successfully");
+      setTimeout(() => {
+        setError("");
+        navigate("/read");
+        // getData();
+      }, 1000);
+      
     }
-    if (!response.ok) {
+    else {
       console.log(response.error);
       setError(response.error);
     }
@@ -63,7 +74,7 @@ const Update = () => {
           <input
             type="text"
             class="form-control"
-            value={fname}
+            value={name}
             onChange={(e) => setName(e.target.value)}
           />
         </div>
