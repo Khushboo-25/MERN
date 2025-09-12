@@ -126,4 +126,4 @@ Working on this project taught me:
 ## 🏷️ Author  
 
 **Khushboo Chaurasiya**  
-🔗 [LinkedIn]([https://www.linkedin.com/in/khushboo-chaurasiya-7a13ab237/]) | 🌐 [Portfolio]([https://khushboo-25.github.io/Portfolio_new/khushboo.html])
+🔗 [LinkedIn](https://www.linkedin.com/in/khushboo-chaurasiya-7a13ab237/) | 🌐 [Portfolio](https://khushboo-25.github.io/Portfolio_new/khushboo.html)
