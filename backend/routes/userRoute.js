@@ -72,4 +72,30 @@ router.patch("/edit/:id", async (req, res) => {
     }
   });
 
+
+// // SEARCH / FILTER EMPLOYEES
+// // Example: GET /search?name=Khushi&age=22
+// router.get("/search", async (req, res) => {
+//   try {
+//     const query = {};
+
+//     // Add filters dynamically
+//     if (req.query.name) {
+//       // Partial match, case-insensitive
+//       query.name = { $regex: req.query.name, $options: "i" };
+//     }
+//     if (req.query.email) {
+//       query.email = { $regex: req.query.email, $options: "i" };
+//     }
+//     if (req.query.age) {
+//       query.age = Number(req.query.age);
+//     }
+
+//     const filteredUsers = await userData.find(query);
+//     res.status(200).json(filteredUsers);
+//   } catch (error) {
+//     res.status(500).json({ error: error.message });
+//   }
+// });
+
 module.exports = router;
