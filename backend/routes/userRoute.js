@@ -74,6 +74,7 @@ router.patch("/edit/:id", async (req, res) => {
 
 
 // // SEARCH / FILTER EMPLOYEES
+// ❌❌NOT WORKING
 // // Example: GET /search?name=Khushi&age=22
 // router.get("/search", async (req, res) => {
 //   try {
