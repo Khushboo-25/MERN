@@ -20,7 +20,7 @@ It also supports **client-side search and sorting** for a smooth user experience
 
 | Layer       | Technology |
 |------------|------------|
-| **Frontend** | React.js, TailwindCSS |
+| **Frontend** | React.js |
 | **Backend**  | Node.js, Express.js |
 | **Database** | MongoDB (Mongoose) |
 | **Tools**    | Git, GitHub, Postman |
